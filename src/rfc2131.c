@@ -1,5 +1,4 @@
 /* dnsmasq is Copyright (c) 2000-2011 Simon Kelley
-   Copyright (c) 2012, 2013 Samsung Electronices Co., Ltd.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -13,9 +12,6 @@
      
    You should have received a copy of the GNU General Public License
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-   * Modifications by Samsung Electronices Co., Ltd.
-   1. ACTION_CONNECT is added to notify IP address assignment
 */
 
 #include "dnsmasq.h"
@@ -100,6 +96,8 @@ size_t dhcp_reply(struct dhcp_context *context, char *iface_name, int int_index,
   struct dhcp_opt *o;
   unsigned char pxe_uuid[17];
   unsigned char *oui = NULL, *serial = NULL, *class = NULL;
+
+  static time_t old_time = 0;
 
   subnet_addr.s_addr = override.s_addr = 0;
 
@@ -1269,7 +1267,9 @@ size_t dhcp_reply(struct dhcp_context *context, char *iface_name, int int_index,
 	    override = lease->override;
 
 	  log_packet("DHCPACK", &mess->yiaddr, emac, emac_len, iface_name, hostname, mess->xid);  
-	  emit_dbus_signal(ACTION_CONNECT, lease, hostname);
+	  if (difftime(now, old_time) > 7)
+		emit_dbus_signal(ACTION_CONNECT, lease, hostname);
+	  old_time = now;
 	  
 	  clear_packet(mess, end);
 	  option_put(mess, end, OPTION_MESSAGE_TYPE, 1, DHCPACK);

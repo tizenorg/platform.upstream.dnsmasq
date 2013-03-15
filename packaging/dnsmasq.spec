@@ -1,9 +1,9 @@
 Name:       dnsmasq
 Summary:    dnsmasq, DNS forwarder.
 Version:    2.57
-Release:    6
+Release:    5
 Group:      TO_BE/FILLED_IN
-License:    GPLv2
+License:    TO BE FILLED IN
 Source0:    %{name}-%{version}.tar.gz
 BuildRequires: cmake
 BuildRequires: pkgconfig(dbus-1)
@@ -30,9 +30,6 @@ rm -rf %{buildroot}
 %{_bindir}/dnsmasq
 
 %changelog
-* Tue Jan 15 2013 Seungyoun Ju <sy39.ju@samsung.com> 2.57-6
-- Send the indication for DHCP connection every time
-
 * Fri Nov 02 2012 Seungyoun Ju <sy39.ju@samsung.com> 2.57-5
 - Default manifest file is added
 
