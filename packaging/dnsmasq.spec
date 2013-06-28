@@ -5,6 +5,7 @@ Release:    5
 Group:      TO_BE/FILLED_IN
 License:    TO BE FILLED IN
 Source0:    %{name}-%{version}.tar.gz
+Source1001: 	dnsmasq.manifest
 BuildRequires: cmake
 BuildRequires: pkgconfig(dbus-1)
 
@@ -13,6 +14,7 @@ Dnsmasq is a lightweight, easy to configure DNS forwarder and DHCP server.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix}
@@ -26,7 +28,7 @@ rm -rf %{buildroot}
 %make_install
 
 %files
-%manifest dnsmasq.manifest
+%manifest %{name}.manifest
 %{_bindir}/dnsmasq
 
 %changelog
