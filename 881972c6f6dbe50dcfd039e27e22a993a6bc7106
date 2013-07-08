@@ -1,0 +1,8 @@
+Change-Id: I881972c6f6dbe50dcfd039e27e22a993a6bc7106
+Code-Review+2: Ryan Ware <ware@linux.intel.com>
+Verified+1: Ryan Ware <ware@linux.intel.com>
+Submitted-by: Ryan Ware <ware@linux.intel.com>
+Submitted-at: Mon, 08 Jul 2013 09:40:38 -0700
+Reviewed-on: https://review.tizen.org/gerrit/4757
+Project: platform/upstream/dnsmasq
+Branch: refs/heads/tizen
