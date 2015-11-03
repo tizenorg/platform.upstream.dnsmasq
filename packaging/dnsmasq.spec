@@ -1,6 +1,6 @@
 Name:           dnsmasq
 Summary:        A lightweight DNS forwarder and DHCP server
-Version:        2.57
+Version:        2.57.1
 Release:        0
 Group:          Network & Connectivity/Data Network
 License:        GPL-2.0
@@ -31,7 +31,10 @@ mkdir -p /opt/var/lib/misc
 
 %install
 %make_install
+mkdir -p %{buildroot}%{_sysconfdir}/dbus-1/system.d
+cp dbus/dnsmasq.conf %{buildroot}%{_sysconfdir}/dbus-1/system.d/dnsmasq.conf
 
 %files
 %manifest %{name}.manifest
 %{_bindir}/dnsmasq
+%attr(644,root,root) %{_sysconfdir}/dbus-1/system.d/*
