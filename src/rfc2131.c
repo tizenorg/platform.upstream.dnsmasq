@@ -97,8 +97,6 @@ size_t dhcp_reply(struct dhcp_context *context, char *iface_name, int int_index,
   unsigned char pxe_uuid[17];
   unsigned char *oui = NULL, *serial = NULL, *class = NULL;
 
-  static time_t old_time = 0;
-
   subnet_addr.s_addr = override.s_addr = 0;
 
   /* set tag with name == interface */
@@ -1267,9 +1265,7 @@ size_t dhcp_reply(struct dhcp_context *context, char *iface_name, int int_index,
 	    override = lease->override;
 
 	  log_packet("DHCPACK", &mess->yiaddr, emac, emac_len, iface_name, hostname, mess->xid);  
-	  if (difftime(now, old_time) > 7)
-		emit_dbus_signal(ACTION_CONNECT, lease, hostname);
-	  old_time = now;
+	  emit_dbus_signal(ACTION_CONNECT, lease, hostname);
 	  
 	  clear_packet(mess, end);
 	  option_put(mess, end, OPTION_MESSAGE_TYPE, 1, DHCPACK);

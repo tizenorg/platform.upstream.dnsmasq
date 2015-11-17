@@ -1,13 +1,13 @@
-Name:           dnsmasq
-Summary:        A lightweight DNS forwarder and DHCP server
-Version:        2.57.1
-Release:        0
-Group:          Network & Connectivity/Data Network
-License:        GPL-2.0
-Source0:        %{name}-%{version}.tar.gz
-Source1001:     dnsmasq.manifest
-BuildRequires:  cmake
-BuildRequires:  pkgconfig(dbus-1)
+Name:       dnsmasq
+Summary:    dnsmasq, DNS forwarder.
+Version:    2.57.1
+Release:    7
+Group:      System/Network
+License:    GPL-2.0+ or GPL-3.0+
+Source0:    %{name}-%{version}.tar.gz
+Source1001:     packaging/dnsmasq.manifest
+BuildRequires: cmake
+BuildRequires: pkgconfig(dbus-1)
 
 %description
 Dnsmasq is a lightweight, easy to configure DNS forwarder and DHCP server.
@@ -33,8 +33,11 @@ mkdir -p /opt/var/lib/misc
 %make_install
 mkdir -p %{buildroot}%{_sysconfdir}/dbus-1/system.d
 cp dbus/dnsmasq.conf %{buildroot}%{_sysconfdir}/dbus-1/system.d/dnsmasq.conf
+mkdir -p %{buildroot}/usr/share/license
+cp COPYING %{buildroot}/usr/share/license/dnsmasq
 
 %files
 %manifest %{name}.manifest
 %{_bindir}/dnsmasq
+/usr/share/license/dnsmasq
 %attr(644,root,root) %{_sysconfdir}/dbus-1/system.d/*
