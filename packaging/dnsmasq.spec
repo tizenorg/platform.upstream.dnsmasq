@@ -27,7 +27,7 @@ cmake . -DCMAKE_INSTALL_PREFIX=%{_prefix}
 make %{?jobs:-j%jobs}
 
 %post
-mkdir -p /opt/var/lib/misc
+mkdir -p %{TZ_SYS_VAR}/lib/misc
 
 %install
 %make_install
