@@ -1,7 +1,7 @@
 Name:       dnsmasq
 Summary:    dnsmasq, DNS forwarder.
-Version:    2.57.1
-Release:    7
+Version:    2.74
+Release:    1
 Group:      System/Network
 License:    GPL-2.0+ or GPL-3.0+
 Source0:    %{name}-%{version}.tar.gz

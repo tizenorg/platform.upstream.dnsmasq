@@ -1,25 +1,40 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 PROJECT(dnsmasq C)
 
-SET(SRCS	src/bpf.c
+SET(SRCS	src/auth.c
+		src/blockdata.c
+		src/bpf.c
 		src/cache.c
+		src/conntrack.c
 		src/dbus.c
+		src/dhcp6.c
 		src/dhcp.c
+		src/dhcp-common.c
 		src/dnsmasq.c
+		src/dnssec.c
+		src/domain.c
 		src/forward.c
 		src/helper.c
+		src/inotify.c
+		src/ipset.c
 		src/lease.c
 		src/log.c
+		src/loop.c
 		src/netlink.c
 		src/network.c
 		src/option.c
+		src/outpacket.c
+		src/poll.c
+		src/radv.c
 		src/rfc1035.c
 		src/rfc2131.c
+		src/rfc3315.c
+		src/slaac.c
+		src/tables.c
 		src/tftp.c
 		src/util.c
    )
 
-SET(VENDOR "samsung")
 SET(PACKAGE ${PROJECT_NAME})
 SET(PKGNAME ${PACKAGE})
 SET(PREFIX ${CMAKE_INSTALL_PREFIX})
@@ -40,12 +55,10 @@ FOREACH(flag ${pkgs_CFLAGS})
 ENDFOREACH(flag)
 SET(EXTRA_CFLAGS "${EXTRA_CFLAGS} -fvisibility=hidden")
 
-SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${EXTRA_CFLAGS} -fPIE")
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${EXTRA_CFLAGS}")
 SET(CMAKE_C_FLAGS_DEBUG "-O0 -g")
 SET(CMAKE_C_FLAGS_RELEASE "-O2")
-SET(CMAKE_EXE_LINKER_FLAGS "-Wl,--as-needed -pie")
 
-ADD_DEFINITIONS("-DVENDOR=\"${VENDOR}\"")
 ADD_DEFINITIONS("-DPACKAGE=\"${PACKAGE}\"")
 ADD_DEFINITIONS("-DPACKAGE_NAME=\"${PKGNAME}\"")
 ADD_DEFINITIONS("-DPREFIX=\"${PREFIX}\"")
