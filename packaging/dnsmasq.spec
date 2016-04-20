@@ -8,6 +8,7 @@ Source0:    %{name}-%{version}.tar.gz
 Source1001:     packaging/dnsmasq.manifest
 BuildRequires: cmake
 BuildRequires: pkgconfig(dbus-1)
+BuildRequires: pkgconfig(libtzplatform-config)
 
 %description
 Dnsmasq is a lightweight, easy to configure DNS forwarder and DHCP server.
