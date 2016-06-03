@@ -172,7 +172,7 @@ RESOLVFILE
 */
 
 /* #define HAVE_LUASCRIPT */
-/* #define HAVE_DBUS */
+#define HAVE_DBUS
 /* #define HAVE_IDN */
 /* #define HAVE_CONNTRACK */
 /* #define HAVE_DNSSEC */
